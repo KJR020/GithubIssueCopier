@@ -1,0 +1,63 @@
+# Chrome Extension Development Rules (For Windsurf Project) - Draft
+
+## 1. Project Structure
+
+/project-root
+│
+├── public/                # Static files such as icons and manifest.json
+├── src/                   # Frontend code (React etc.)
+│   ├── popup/             # popup.html + React entry
+│   ├── options/           # options.html + React entry
+│   ├── content/           # Content scripts for DOM interaction
+│   └── background/        # Service Worker / background scripts
+│
+├── types/                 # Type definitions like chrome.d.ts
+├── dist/                  # Build output for chrome://extensions/
+├── manifest.json          # Extension manifest
+└── vite.config.ts         # Vite build configuration
+
+## 2. Technologies
+
+- Build tool: Vite (with React support)
+- Framework: React + TypeScript
+- Extension spec: Manifest V3 (Service Worker-based)
+
+## 3. Naming & Directory Rules
+
+- Use `popup`, `options`, `background`, `content` directories clearly
+- Place reusable components under `components/` if necessary
+- Manage Chrome API types under `types/chrome.d.ts`
+
+## 4. Build & Development Rules
+
+- Use multi-entry configuration in `vite.config.ts` (popup.tsx, options.tsx, etc.)
+- Place `manifest.json` in `public/` and copy via Vite
+- Load files from `dist/` into `chrome://extensions/` for local development
+
+## 5. Coding Guidelines
+
+- TypeScript required (avoid `any`)
+- Use proper typings for `chrome.runtime`, `chrome.tabs`, etc.
+- If using React in `content.js`, consider using a shadow DOM to avoid conflicts
+
+## 6. Communication & Security
+
+- Declare external APIs in `permissions` and `host_permissions` in manifest
+- Mind CORS policies; handle sensitive requests via background script if needed
+- Use `chrome.storage` for login or sensitive data; never expose directly
+
+## 7. Debugging
+
+- Load the extension in `chrome://extensions/` → Developer Mode → Load from `dist/`
+- For `content.js`, inspect the target tab with DevTools (F12)
+- Check Service Worker logs in `chrome://extensions/` → "Service Worker" section
+
+## 8. Miscellaneous
+
+- Mention the target (popup/options/background/etc.) in GitHub issues and PRs
+- Use `eslint` and `prettier` for consistent formatting
+- Example commands:
+  ```bash
+  npm run build
+  npm run dev
+  ```

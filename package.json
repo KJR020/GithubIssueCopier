@@ -1,0 +1,25 @@
+{
+  "name": "github-issue-copier",
+  "version": "1.0.0",
+  "description": "GitHubのIssueタイトルをリンク付きでコピーするChrome拡張機能",
+  "main": "dist/content.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "postbuild": "cp manifest.json dist/ && cp popup.html dist/ && mkdir -p dist/images && cp -r images/* dist/images/ || true"
+  },
+  "keywords": [
+    "chrome-extension",
+    "github",
+    "issue",
+    "copy"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chrome": "^0.0.246",
+    "typescript": "^5.2.2"
+  }
+}
