@@ -3,7 +3,7 @@
   "name": "GitHub Issue Copier",
   "version": "1.0",
   "description": "GitHubのIssueタイトルをリンク付きでコピーするための拡張機能",
-  "permissions": ["clipboardWrite", "activeTab"],
+  "permissions": ["clipboardWrite", "activeTab", "contextMenus"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

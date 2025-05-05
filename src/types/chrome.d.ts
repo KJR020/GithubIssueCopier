@@ -15,13 +15,17 @@ declare namespace chrome {
       tlsChannelId?: string;
     }
 
-    function onMessage(
-      callback: (
-        message: any,
-        sender: MessageSender,
-        sendResponse: (response?: any) => void
-      ) => boolean | void
-    ): void;
+    interface RuntimeEvent<T extends Function> {
+      addListener(callback: T): void;
+      removeListener(callback: T): void;
+      hasListeners(): boolean;
+    }
+
+    const onMessage: RuntimeEvent<(
+      message: any,
+      sender: MessageSender,
+      sendResponse: (response?: any) => void
+    ) => boolean | void>;
 
     const onInstalled: {
       addListener(callback: (details: { reason: string }) => void): void;

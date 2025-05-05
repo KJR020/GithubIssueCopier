@@ -8,7 +8,7 @@
     "watch": "tsc --watch",
     "clean": "rm -rf dist",
     "prebuild": "npm run clean",
-    "postbuild": "cp manifest.json dist/ && cp popup.html dist/ && mkdir -p dist/images && cp -r images/* dist/images/ || true"
+    "postbuild": "cp public/manifest.json dist/ && cp public/popup.html dist/ && mkdir -p dist/images && cp -r public/images/* dist/images/ || true"
   },
   "keywords": [
     "chrome-extension",
